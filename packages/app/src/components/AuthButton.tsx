@@ -4,13 +4,14 @@ import { Button } from "@material-ui/core";
 
 const AuthButton = () => {
   const {
-    props: { isAuthenticated },
+    props: { isAuthenticated, user },
     setAuthenticated
   } = React.useContext(AppContext);
 
   return isAuthenticated ? (
     <p>
-      Welcome! <Button onClick={() => setAuthenticated(false)}>Sign out</Button>
+      Welcome {user ? user.name : ""}!
+      <Button onClick={() => setAuthenticated(false)}>Sign out</Button>
     </p>
   ) : (
     <p>

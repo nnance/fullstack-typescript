@@ -1,10 +1,13 @@
 import React from "react";
 import { merge } from "lodash/fp";
-import { url } from "inspector";
 
 type AppProps = {
   isLightTheme: boolean;
   isAuthenticated: boolean;
+  user?: {
+    name: string;
+    email: string;
+  };
 };
 
 const initialProps = (): AppProps => ({
@@ -38,9 +41,12 @@ export const useAppContext = () => {
           "Content-Type": "application/json"
         }
       });
-      setProps(cur => merge(cur, { isAuthenticated: resp.status === 200 }));
+      if (resp.status < 400) {
+        const user = await resp.json();
+        setProps(cur => merge(cur, { isAuthenticated: true, user }));
+      }
     } else {
-      setProps(cur => merge(cur, { isAuthenticated: val }));
+      setProps(cur => merge(cur, { isAuthenticated: false, user: undefined }));
     }
   };
 
