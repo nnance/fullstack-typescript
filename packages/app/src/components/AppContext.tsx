@@ -1,5 +1,6 @@
 import React from "react";
 import { merge } from "lodash/fp";
+import { url } from "inspector";
 
 type AppProps = {
   isLightTheme: boolean;
@@ -10,6 +11,11 @@ const initialProps = (): AppProps => ({
   isLightTheme: true,
   isAuthenticated: false
 });
+
+const testUser = {
+  email: "superman@gmail.com",
+  password: "Bro"
+};
 
 export const AppContext = React.createContext({
   props: initialProps(),
@@ -23,8 +29,20 @@ export const useAppContext = () => {
   const setLightTheme = (val: boolean) =>
     setProps(cur => merge(cur, { isLightTheme: val }));
 
-  const setAuthenticated = (val: boolean) =>
-    setProps(cur => merge(cur, { isAuthenticated: val }));
+  const setAuthenticated = async (val: boolean) => {
+    if (val) {
+      const resp = await fetch("/users/login", {
+        body: JSON.stringify(testUser),
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      setProps(cur => merge(cur, { isAuthenticated: resp.status === 200 }));
+    } else {
+      setProps(cur => merge(cur, { isAuthenticated: val }));
+    }
+  };
 
   return {
     props,

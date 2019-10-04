@@ -1,4 +1,4 @@
-# fullstack-typescript-example
+# fullstack-typescript
 
 This is an example application built with Create React App with TypeScript for the front end and using Express and TypeScript for the backend.
 
