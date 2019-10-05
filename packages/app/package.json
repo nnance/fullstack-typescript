@@ -6,6 +6,7 @@
   "dependencies": {
     "@material-ui/core": "^4.4.3",
     "@material-ui/icons": "^4.4.3",
+    "api": "^1.0.0",
     "lodash": "^4.17.15",
     "react": "^16.10.1",
     "react-dom": "^16.10.1"
@@ -45,5 +46,5 @@
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.6.3"
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3010"
 }

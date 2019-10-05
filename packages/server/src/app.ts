@@ -5,7 +5,7 @@ import logger from "morgan";
 import usersRouter from "./routes/users";
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3010;
 
 app.use(logger("dev"));
 app.use(express.json());

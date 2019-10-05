@@ -1,13 +1,11 @@
 import React from "react";
 import { merge } from "lodash/fp";
+import { IUser, login } from "api";
 
 type AppProps = {
   isLightTheme: boolean;
   isAuthenticated: boolean;
-  user?: {
-    name: string;
-    email: string;
-  };
+  user?: IUser;
 };
 
 const initialProps = (): AppProps => ({
@@ -34,17 +32,8 @@ export const useAppContext = () => {
 
   const setAuthenticated = async (val: boolean) => {
     if (val) {
-      const resp = await fetch("/users/login", {
-        body: JSON.stringify(testUser),
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-      if (resp.status < 400) {
-        const user = await resp.json();
-        setProps(cur => merge(cur, { isAuthenticated: true, user }));
-      }
+      const user = await login(testUser);
+      setProps(cur => merge(cur, { isAuthenticated: true, user }));
     } else {
       setProps(cur => merge(cur, { isAuthenticated: false, user: undefined }));
     }

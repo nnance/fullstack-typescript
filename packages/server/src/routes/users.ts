@@ -1,14 +1,7 @@
 import express from "express";
+import { IUser, testUsers as users } from "api";
 
 const router = express.Router();
-
-const users = [
-  {
-    name: "Superman",
-    email: "superman@gmail.com",
-    password: "Bro"
-  }
-];
 
 /* GET users listing. */
 router.get("/", (req, res) => {

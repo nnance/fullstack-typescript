@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "lerna run start",
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap --hoist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
