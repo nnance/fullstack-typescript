@@ -4,8 +4,10 @@ import ReactDOM from "react-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/styles";
 import App from "./components/App";
+import SignIn from "./components/SignIn";
 import theme, { darkTheme } from "./theme";
 import { AppContext, useAppContext } from "./components/AppContext";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const Container = () => {
   const switcher = useAppContext();
@@ -14,7 +16,13 @@ const Container = () => {
       <ThemeProvider theme={switcher.props.isLightTheme ? theme : darkTheme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <App />
+        <Router>
+          <Switch>
+            <Route exact path="/" component={App} />
+            <Route path="/signin" component={SignIn} />
+            {/* <Route component={Notfound} /> */}
+          </Switch>
+        </Router>
       </ThemeProvider>
     </AppContext.Provider>
   );
