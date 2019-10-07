@@ -1,12 +1,17 @@
 import React from "react";
 import { AppContext } from "./AppContext";
 import { Button } from "@material-ui/core";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
-const AuthButton = () => {
+const AuthButton = (props: RouteComponentProps) => {
   const {
     props: { isAuthenticated, user },
     setAuthenticated
   } = React.useContext(AppContext);
+
+  const handleLogin = () => {
+    props.history.push("/login");
+  };
 
   return isAuthenticated ? (
     <p>
@@ -16,9 +21,9 @@ const AuthButton = () => {
   ) : (
     <p>
       You are not logged in.
-      <Button onClick={() => setAuthenticated(true)}>Sign In</Button>
+      <Button onClick={handleLogin}>Sign In</Button>
     </p>
   );
 };
 
-export default AuthButton;
+export default withRouter(AuthButton);

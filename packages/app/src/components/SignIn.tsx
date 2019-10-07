@@ -16,6 +16,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 import Copyright from "./Copyright";
+import { AppContext } from "./AppContext";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -44,6 +45,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignIn() {
   const classes = useStyles(useTheme());
+  const { setAuthenticated } = React.useContext(AppContext);
+
+  const [state, setState] = React.useState({ email: "", password: "" });
+
+  const signInHandler = () => {
+    console.log(state);
+    setAuthenticated(true, state);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -65,6 +74,10 @@ export default function SignIn() {
             label="Email Address"
             name="email"
             autoComplete="email"
+            onChange={val => {
+              const email = val.currentTarget.value;
+              setState(prev => ({ ...prev, email }));
+            }}
             autoFocus
           />
           <TextField
@@ -77,17 +90,21 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={val => {
+              const password = val.currentTarget.value;
+              setState(prev => ({ ...prev, password }));
+            }}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={signInHandler}
           >
             Sign In
           </Button>

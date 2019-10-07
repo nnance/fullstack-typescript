@@ -1,6 +1,6 @@
 import React from "react";
 import { merge } from "lodash/fp";
-import { IUser, login } from "api";
+import { IUser, login, ILoginRequest } from "api";
 
 type AppProps = {
   isLightTheme: boolean;
@@ -21,7 +21,7 @@ const testUser = {
 export const AppContext = React.createContext({
   props: initialProps(),
   setLightTheme: (val: boolean) => {},
-  setAuthenticated: (val: boolean) => {}
+  setAuthenticated: (val: boolean, req?: ILoginRequest) => {}
 });
 
 export const useAppContext = () => {
@@ -30,9 +30,9 @@ export const useAppContext = () => {
   const setLightTheme = (val: boolean) =>
     setProps(cur => merge(cur, { isLightTheme: val }));
 
-  const setAuthenticated = async (val: boolean) => {
+  const setAuthenticated = async (val: boolean, req?: ILoginRequest) => {
     if (val) {
-      const user = await login(testUser);
+      const user = await login(req ? req : testUser);
       setProps(cur => merge(cur, { isAuthenticated: true, user }));
     } else {
       setProps(cur => merge(cur, { isAuthenticated: false, user: undefined }));

@@ -19,7 +19,7 @@ const Container = () => {
         <Router>
           <Switch>
             <Route exact path="/" component={App} />
-            <Route path="/signin" component={SignIn} />
+            <Route path="/login" component={SignIn} />
             {/* <Route component={Notfound} /> */}
           </Switch>
         </Router>
