@@ -10,7 +10,7 @@ const AuthButton = (props: RouteComponentProps) => {
   } = React.useContext(AppContext);
 
   const handleLogin = () => {
-    props.history.push("/login");
+    props.history.push("/login", { from: props.location });
   };
 
   return isAuthenticated ? (

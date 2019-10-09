@@ -5,12 +5,14 @@ import { IUser, login, ILoginRequest } from "api";
 type AppProps = {
   isLightTheme: boolean;
   isAuthenticated: boolean;
+  authFailed: boolean;
   user?: IUser;
 };
 
 const initialProps = (): AppProps => ({
   isLightTheme: true,
-  isAuthenticated: false
+  isAuthenticated: false,
+  authFailed: false
 });
 
 const testUser = {
@@ -32,10 +34,27 @@ export const useAppContext = () => {
 
   const setAuthenticated = async (val: boolean, req?: ILoginRequest) => {
     if (val) {
-      const user = await login(req ? req : testUser);
-      setProps(cur => merge(cur, { isAuthenticated: true, user }));
+      login(req ? req : testUser)
+        .then(user =>
+          setProps(cur => merge(cur, { isAuthenticated: true, user }))
+        )
+        .catch(err =>
+          setProps(cur =>
+            merge(cur, {
+              isAuthenticated: false,
+              authFailed: true,
+              user: undefined
+            })
+          )
+        );
     } else {
-      setProps(cur => merge(cur, { isAuthenticated: false, user: undefined }));
+      setProps(cur =>
+        merge(cur, {
+          isAuthenticated: false,
+          authFailed: true,
+          user: undefined
+        })
+      );
     }
   };
 

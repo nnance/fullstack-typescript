@@ -17,6 +17,9 @@ import Container from "@material-ui/core/Container";
 
 import Copyright from "./Copyright";
 import { AppContext } from "./AppContext";
+import { RouteComponentProps } from "react-router-dom";
+
+import ErrorMsg from "./ErrorMsg";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -43,15 +46,20 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignIn() {
+export default function SignIn(props: RouteComponentProps) {
   const classes = useStyles(useTheme());
-  const { setAuthenticated } = React.useContext(AppContext);
+
+  const appContext = React.useContext(AppContext);
 
   const [state, setState] = React.useState({ email: "", password: "" });
 
+  React.useEffect(() => {
+    const { from } = props.location.state || { from: { pathname: "/" } };
+    if (appContext.props.isAuthenticated) props.history.push(from);
+  }, [appContext.props, props]);
+
   const signInHandler = () => {
-    console.log(state);
-    setAuthenticated(true, state);
+    appContext.setAuthenticated(true, state);
   };
 
   return (
@@ -64,6 +72,10 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        <ErrorMsg
+          open={appContext.props.authFailed || false}
+          message={"Invalid email address or password!"}
+        />
         <form className={classes.form} noValidate>
           <TextField
             variant="outlined"
