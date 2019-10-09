@@ -15,11 +15,11 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-import Copyright from "./Copyright";
-import { AppContext } from "./AppContext";
+import Copyright from "./components/Copyright";
+import { AppContext } from "./components/AppContext";
 import { RouteComponentProps } from "react-router-dom";
 
-import ErrorMsg from "./ErrorMsg";
+import ErrorMsg from "./components/ErrorMsg";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
