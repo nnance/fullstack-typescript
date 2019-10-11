@@ -9,6 +9,11 @@ import {
   makeStyles
 } from "@material-ui/core";
 
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps
+} from "react-router-dom";
+
 const useStyles = makeStyles(theme => ({
   appBar: {
     borderBottom: `1px solid ${theme.palette.divider}`
@@ -23,6 +28,10 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1, 1.5)
   }
 }));
+
+const Link1 = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(
+  (props, ref) => <RouterLink innerRef={ref} {...props} />
+);
 
 const NavHeader = () => {
   const classes = useStyles(useTheme());
@@ -47,16 +56,27 @@ const NavHeader = () => {
           <Link
             variant="button"
             color="textPrimary"
-            href="/orders"
             className={classes.link}
+            component={Link1}
+            to="/"
+          >
+            Home
+          </Link>
+          <Link
+            variant="button"
+            color="textPrimary"
+            className={classes.link}
+            component={Link1}
+            to="/orders"
           >
             Orders
           </Link>
           <Link
             variant="button"
             color="textPrimary"
-            href="/users"
             className={classes.link}
+            component={Link1}
+            to="/users"
           >
             Users
           </Link>

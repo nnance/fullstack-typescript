@@ -7,7 +7,8 @@ import {
   TableHead,
   TableRow,
   useTheme,
-  Typography
+  Typography,
+  Container
 } from "@material-ui/core";
 import React from "react";
 
@@ -90,7 +91,7 @@ export default function Orders() {
   }, []);
 
   return (
-    <React.Fragment>
+    <Container maxWidth="md">
       <Typography component="h2" variant="h6" color="primary" gutterBottom>
         Recent Orders
       </Typography>
@@ -121,6 +122,6 @@ export default function Orders() {
           See more orders
         </Link>
       </div>
-    </React.Fragment>
+    </Container>
   );
 }

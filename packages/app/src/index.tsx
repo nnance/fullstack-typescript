@@ -5,21 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/styles";
 import theme, { darkTheme } from "./theme";
 import { AppContext, useAppContext } from "./components/AppContext";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { withNavHeader } from "./components/NavHeader";
-import { flow } from "lodash/fp";
-import { withCopyright } from "./components/Copyright";
-
-import App from "./App";
-import SignIn from "./SignIn";
-import Orders from "./Orders";
-
-function withNavCopyright<T>(Component: React.ComponentType<T>) {
-  return flow(
-    withNavHeader,
-    withCopyright
-  )(Component);
-}
+import Router from "./Router";
 
 const Container = () => {
   const switcher = useAppContext();
@@ -28,14 +14,7 @@ const Container = () => {
       <ThemeProvider theme={switcher.props.isLightTheme ? theme : darkTheme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Router>
-          <Switch>
-            <Route exact path="/" component={withNavCopyright(App)} />
-            <Route path="/orders" component={withNavCopyright(Orders)} />
-            <Route path="/login" component={withCopyright(SignIn)} />
-            {/* <Route component={Notfound} /> */}
-          </Switch>
-        </Router>
+        <Router/>
       </ThemeProvider>
     </AppContext.Provider>
   );
