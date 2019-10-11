@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/styles";
-import App from "./components/App";
+import App from "./App";
 import theme, { darkTheme } from "./theme";
 import { AppContext, useAppContext } from "./components/AppContext";
 

@@ -3,10 +3,10 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
-import ProTip from "./ProTip";
+import ProTip from "./components/ProTip";
 import { Button } from "@material-ui/core";
-import { AppContext } from "./AppContext";
-import AuthButton from "./AuthButton";
+import { AppContext } from "./components/AppContext";
+import AuthButton from "./components/AuthButton";
 
 function Copyright() {
   return (
