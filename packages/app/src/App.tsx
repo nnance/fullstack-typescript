@@ -4,6 +4,7 @@ import { AppContext } from "./components/AppContext";
 import ProTip from "./components/ProTip";
 import AuthButton from "./components/AuthButton";
 import Copyright from "./components/Copyright";
+import NavHeader from "./components/NavHeader";
 
 export default function App() {
   const { setLightTheme } = React.useContext(AppContext);
@@ -13,17 +14,20 @@ export default function App() {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create React App example with TypeScript
-        </Typography>
-        <Button onClick={switchHandler(true)}>Light</Button>
-        <Button onClick={switchHandler(false)}>Dark</Button>
-        <AuthButton />
-        <ProTip />
-        <Copyright />
-      </Box>
-    </Container>
+    <React.Fragment>
+      <NavHeader />
+      <Container maxWidth="sm">
+        <Box my={4}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Create React App example with TypeScript
+          </Typography>
+          <Button onClick={switchHandler(true)}>Light</Button>
+          <Button onClick={switchHandler(false)}>Dark</Button>
+          <AuthButton />
+          <ProTip />
+          <Copyright />
+        </Box>
+      </Container>
+    </React.Fragment>
   );
 }

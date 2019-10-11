@@ -1,7 +1,32 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Link, Button } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Link,
+  Button,
+  useTheme,
+  makeStyles
+} from "@material-ui/core";
 
-export default function() {
+const useStyles = makeStyles(theme => ({
+  appBar: {
+    borderBottom: `1px solid ${theme.palette.divider}`
+  },
+  toolbar: {
+    flexWrap: "wrap"
+  },
+  toolbarTitle: {
+    flexGrow: 1
+  },
+  link: {
+    margin: theme.spacing(1, 1.5)
+  }
+}));
+
+const NavHeader = () => {
+  const classes = useStyles(useTheme());
+
   return (
     <AppBar
       position="static"
@@ -55,4 +80,12 @@ export default function() {
       </Toolbar>
     </AppBar>
   );
-}
+};
+
+// export const withNavHeader = (WrappedComponent: JSX.Element) => (
+//   <NavHeader>
+//     <WrappedComponent />
+//   </NavHeader>
+// );
+
+export default NavHeader;
