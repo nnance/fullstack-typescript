@@ -3,14 +3,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/styles";
-import App from "./App";
-import SignIn from "./SignIn";
 import theme, { darkTheme } from "./theme";
 import { AppContext, useAppContext } from "./components/AppContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { withNavHeader } from "./components/NavHeader";
 import { flow } from "lodash/fp";
 import { withCopyright } from "./components/Copyright";
+
+import App from "./App";
+import SignIn from "./SignIn";
+import Orders from "./Orders";
 
 function withNavCopyright<T>(Component: React.ComponentType<T>) {
   return flow(
@@ -29,6 +31,7 @@ const Container = () => {
         <Router>
           <Switch>
             <Route exact path="/" component={withNavCopyright(App)} />
+            <Route path="/orders" component={withNavCopyright(Orders)} />
             <Route path="/login" component={withCopyright(SignIn)} />
             {/* <Route component={Notfound} /> */}
           </Switch>

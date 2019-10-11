@@ -47,26 +47,18 @@ const NavHeader = () => {
           <Link
             variant="button"
             color="textPrimary"
-            href="#"
+            href="/orders"
             className={classes.link}
           >
-            Features
+            Orders
           </Link>
           <Link
             variant="button"
             color="textPrimary"
-            href="#"
+            href="/users"
             className={classes.link}
           >
-            Enterprise
-          </Link>
-          <Link
-            variant="button"
-            color="textPrimary"
-            href="#"
-            className={classes.link}
-          >
-            Support
+            Users
           </Link>
         </nav>
         <Button
