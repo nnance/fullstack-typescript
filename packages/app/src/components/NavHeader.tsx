@@ -82,10 +82,13 @@ const NavHeader = () => {
   );
 };
 
-// export const withNavHeader = (WrappedComponent: JSX.Element) => (
-//   <NavHeader>
-//     <WrappedComponent />
-//   </NavHeader>
-// );
+export function withNavHeader<T>(Component: React.ComponentType<T>) {
+  return (props: T) => (
+    <React.Fragment>
+      <NavHeader />
+      <Component {...props} />
+    </React.Fragment>
+  );
+}
 
 export default NavHeader;

@@ -7,7 +7,6 @@ import {
   FormControlLabel,
   Checkbox,
   Link,
-  Box,
   Grid
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -15,7 +14,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-import Copyright from "./components/Copyright";
 import { AppContext } from "./components/AppContext";
 import { RouteComponentProps } from "react-router-dom";
 
@@ -129,9 +127,6 @@ export default function SignIn(props: RouteComponentProps) {
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }

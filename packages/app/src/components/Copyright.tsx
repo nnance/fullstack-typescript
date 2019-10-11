@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "@material-ui/core";
+import { Link, Box } from "@material-ui/core";
 
 export default function Copyright() {
   return (
@@ -12,5 +12,16 @@ export default function Copyright() {
       {new Date().getFullYear()}
       {"."}
     </Typography>
+  );
+}
+
+export function withCopyright<T>(Component: React.ComponentType<T>) {
+  return (props: T) => (
+    <React.Fragment>
+      <Component {...props} />
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </React.Fragment>
   );
 }
