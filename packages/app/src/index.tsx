@@ -14,7 +14,7 @@ const Container = () => {
       <ThemeProvider theme={switcher.props.isLightTheme ? theme : darkTheme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Router/>
+        <Router />
       </ThemeProvider>
     </AppContext.Provider>
   );
