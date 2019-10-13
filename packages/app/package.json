@@ -1,6 +1,5 @@
 {
-  "name": "material-theme-switcher",
-  "description": "Material UI Theme Switcher",
+  "name": "app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
