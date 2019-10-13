@@ -11,7 +11,6 @@ import { flow } from "lodash/fp";
 import { withCopyright } from "./components/Copyright";
 
 import App from "./App";
-import SignIn from "./SignIn";
 import Orders from "./Orders";
 
 function withNavCopyright<T>(Component: React.ComponentType<T>) {
@@ -32,7 +31,6 @@ const Container = () => {
           <Switch>
             <Route exact path="/" component={withNavCopyright(App)} />
             <Route path="/orders" component={withNavCopyright(Orders)} />
-            <Route path="/login" component={withCopyright(SignIn)} />
             {/* <Route component={Notfound} /> */}
           </Switch>
         </Router>

@@ -52,14 +52,6 @@ const NavHeader = () => {
           >
             Orders
           </Link>
-          <Link
-            variant="button"
-            color="textPrimary"
-            href="/users"
-            className={classes.link}
-          >
-            Users
-          </Link>
         </nav>
         <Button
           href="#"
@@ -67,7 +59,7 @@ const NavHeader = () => {
           variant="outlined"
           className={classes.link}
         >
-          Login
+          Sign In
         </Button>
       </Toolbar>
     </AppBar>
