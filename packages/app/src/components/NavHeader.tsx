@@ -74,7 +74,7 @@ const NavHeader = () => {
           </Link>
         </nav>
         <AuthButton
-          color="primary"
+          color="inherit"
           variant="outlined"
           className={classes.link}
         />
