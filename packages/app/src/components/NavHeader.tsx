@@ -73,7 +73,11 @@ const NavHeader = () => {
             Orders
           </Link>
         </nav>
-        <AuthButton />
+        <AuthButton
+          color="primary"
+          variant="outlined"
+          className={classes.link}
+        />
       </Toolbar>
     </AppBar>
   );
