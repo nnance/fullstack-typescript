@@ -63,7 +63,7 @@ cd create-react-app
 ## Tasks
 
 - [ ] Complete project structure docs
-- [ ] Make nav-header branch simple by removing signin and just having theme selector and orders 
+- [x] Make nav-header branch simple by removing signin and just having theme selector and orders 
 - [ ] Add docs on how to clone repo for a template based on the complexity of the app
 - [ ] Add a new branch that has a user profile page and a list of users that shows the profile of a user
-- [ ] Determine if the css files are used, if so add them as theme overrides
+- [x] Determine if the css files are used, if so add them as theme overrides

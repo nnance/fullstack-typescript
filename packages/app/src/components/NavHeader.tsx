@@ -9,6 +9,13 @@ import {
   makeStyles
 } from "@material-ui/core";
 
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps
+} from "react-router-dom";
+
+import { AppContext } from "./AppContext";
+
 const useStyles = makeStyles(theme => ({
   appBar: {
     borderBottom: `1px solid ${theme.palette.divider}`
@@ -24,8 +31,38 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const Link1 = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(
+  (props, ref) => <RouterLink innerRef={ref} {...props} />
+);
+
 const NavHeader = () => {
   const classes = useStyles(useTheme());
+
+  const {
+    props: { isAuthenticated },
+    setAuthenticated
+  } = React.useContext(AppContext);
+
+  const SignInButton = () =>
+    !isAuthenticated ? (
+      <Button
+        color="primary"
+        variant="outlined"
+        className={classes.link}
+        onClick={() => setAuthenticated(true)}
+      >
+        Sign In
+      </Button>
+    ) : (
+      <Button
+        color="primary"
+        variant="outlined"
+        className={classes.link}
+        onClick={() => setAuthenticated(false)}
+      >
+        Sign Out
+      </Button>
+    );
 
   return (
     <AppBar
@@ -47,20 +84,23 @@ const NavHeader = () => {
           <Link
             variant="button"
             color="textPrimary"
-            href="/orders"
             className={classes.link}
+            component={Link1}
+            to="/"
+          >
+            Home
+          </Link>
+          <Link
+            variant="button"
+            color="textPrimary"
+            className={classes.link}
+            component={Link1}
+            to="/orders"
           >
             Orders
           </Link>
         </nav>
-        <Button
-          href="#"
-          color="primary"
-          variant="outlined"
-          className={classes.link}
-        >
-          Sign In
-        </Button>
+        <SignInButton />
       </Toolbar>
     </AppBar>
   );
