@@ -3,7 +3,7 @@ type Decoder = <T>(json: string) => T;
 export async function callApi<T>(path: string, decoder?: Decoder): Promise<T> {
   const response = await fetch(path);
   const body = await response.json();
-  if (response.status < 400) {
+  if (response.status > 399) {
     throw Error(response.statusText);
   }
   return decoder ? decoder(body) : (body as T);
