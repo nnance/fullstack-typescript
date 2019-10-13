@@ -9,10 +9,6 @@ const AuthButton = (props: RouteComponentProps) => {
     setAuthenticated
   } = React.useContext(AppContext);
 
-  const handleLogin = () => {
-    props.history.push("/login", { from: props.location });
-  };
-
   return isAuthenticated ? (
     <p>
       Welcome {user ? user.name : ""}!
@@ -21,7 +17,7 @@ const AuthButton = (props: RouteComponentProps) => {
   ) : (
     <p>
       You are not logged in.
-      <Button onClick={handleLogin}>Sign In</Button>
+      <Button onClick={() => setAuthenticated(true)}>Sign In</Button>
     </p>
   );
 };
