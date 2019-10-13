@@ -4,19 +4,16 @@ import {
   Toolbar,
   Typography,
   Link,
-  Button,
   useTheme,
   makeStyles
 } from "@material-ui/core";
 
 import {
   Link as RouterLink,
-  LinkProps as RouterLinkProps,
-  useHistory,
-  useLocation
+  LinkProps as RouterLinkProps
 } from "react-router-dom";
 
-import { AppContext } from "./AppContext";
+import AuthButton from "./AuthButton";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -39,36 +36,6 @@ const Link1 = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(
 
 const NavHeader = () => {
   const classes = useStyles(useTheme());
-  const history = useHistory();
-  const location = useLocation();
-
-  const {
-    props: { isAuthenticated },
-    setAuthenticated
-  } = React.useContext(AppContext);
-
-  const SignInButton = () =>
-    !isAuthenticated ? (
-      <Button
-        href="#"
-        color="primary"
-        variant="outlined"
-        className={classes.link}
-        onClick={() => history.push("/login", { from: location })}
-      >
-        Sign In
-      </Button>
-    ) : (
-      <Button
-        href="#"
-        color="primary"
-        variant="outlined"
-        className={classes.link}
-        onClick={() => setAuthenticated(false)}
-      >
-        Sign Out
-      </Button>
-    );
 
   return (
     <AppBar
@@ -106,7 +73,7 @@ const NavHeader = () => {
             Orders
           </Link>
         </nav>
-        <SignInButton />
+        <AuthButton />
       </Toolbar>
     </AppBar>
   );
