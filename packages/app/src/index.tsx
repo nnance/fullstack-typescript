@@ -10,8 +10,9 @@ import { withNavHeader } from "./components/NavHeader";
 import { flow } from "lodash/fp";
 import { withCopyright } from "./components/Copyright";
 
-import App from "./App";
-import Orders from "./Orders";
+import App from "./routes/App";
+import Orders from "./routes/Orders";
+import NotFound from "./routes/NotFound";
 
 function withNavCopyright<T>(Component: React.ComponentType<T>) {
   return flow(
@@ -31,7 +32,7 @@ const Container = () => {
           <Switch>
             <Route exact path="/" component={withNavCopyright(App)} />
             <Route path="/orders" component={withNavCopyright(Orders)} />
-            {/* <Route component={Notfound} /> */}
+            <Route component={withNavCopyright(NotFound)} />
           </Switch>
         </Router>
       </ThemeProvider>

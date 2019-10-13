@@ -2,10 +2,10 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import ProTip from "./components/ProTip";
+import ProTip from "../components/ProTip";
 import { Button } from "@material-ui/core";
-import { AppContext } from "./components/AppContext";
-import AuthButton from "./components/AuthButton";
+import { AppContext } from "../components/AppContext";
+import AuthButton from "../components/AuthButton";
 
 export default function App() {
   const { setLightTheme } = React.useContext(AppContext);
