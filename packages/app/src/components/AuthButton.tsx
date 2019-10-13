@@ -1,24 +1,40 @@
 import React from "react";
 import { AppContext } from "./AppContext";
-import { Button } from "@material-ui/core";
-import { withRouter, RouteComponentProps } from "react-router-dom";
+import { Button, makeStyles, useTheme } from "@material-ui/core";
+import { withRouter } from "react-router-dom";
 
-const AuthButton = (props: RouteComponentProps) => {
+const useStyles = makeStyles(theme => ({
+  link: {
+    margin: theme.spacing(1, 1.5)
+  }
+}));
+
+const AuthButton = () => {
+  const classes = useStyles(useTheme());
+
   const {
-    props: { isAuthenticated, user },
+    props: { isAuthenticated },
     setAuthenticated
   } = React.useContext(AppContext);
 
-  return isAuthenticated ? (
-    <p>
-      Welcome {user ? user.name : ""}!
-      <Button onClick={() => setAuthenticated(false)}>Sign out</Button>
-    </p>
+  return !isAuthenticated ? (
+    <Button
+      color="primary"
+      variant="outlined"
+      className={classes.link}
+      onClick={() => setAuthenticated(true)}
+    >
+      Sign In
+    </Button>
   ) : (
-    <p>
-      You are not logged in.
-      <Button onClick={() => setAuthenticated(true)}>Sign In</Button>
-    </p>
+    <Button
+      color="primary"
+      variant="outlined"
+      className={classes.link}
+      onClick={() => setAuthenticated(false)}
+    >
+      Sign Out
+    </Button>
   );
 };
 
