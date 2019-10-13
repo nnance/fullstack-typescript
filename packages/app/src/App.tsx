@@ -9,6 +9,16 @@ import AuthButton from "./components/AuthButton";
 
 export default function App() {
   const { setLightTheme } = React.useContext(AppContext);
+  const {
+    props: { isAuthenticated, user }
+  } = React.useContext(AppContext);
+
+  const Status = () =>
+    isAuthenticated ? (
+      <React.Fragment>Welcome {user ? user.name : ""}!</React.Fragment>
+    ) : (
+      <React.Fragment>You are not logged in.</React.Fragment>
+    );
 
   return (
     <Container maxWidth="sm">
@@ -18,7 +28,10 @@ export default function App() {
         </Typography>
         <Button onClick={() => setLightTheme(true)}>Light</Button>
         <Button onClick={() => setLightTheme(false)}>Dark</Button>
-        <AuthButton />
+        <p>
+          <Status />
+          <AuthButton />
+        </p>
         <ProTip />
       </Box>
     </Container>
