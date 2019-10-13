@@ -17,7 +17,11 @@ const AuthButton = (props: RouteComponentProps) => {
   ) : (
     <p>
       You are not logged in.
-      <Button onClick={() => setAuthenticated(true)}>Sign In</Button>
+      <Button
+        onClick={() => props.history.push("/login", { from: props.location })}
+      >
+        Sign In
+      </Button>
     </p>
   );
 };

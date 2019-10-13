@@ -11,8 +11,12 @@ import {
 
 import {
   Link as RouterLink,
-  LinkProps as RouterLinkProps
+  LinkProps as RouterLinkProps,
+  useHistory,
+  useLocation
 } from "react-router-dom";
+
+import { AppContext } from "./AppContext";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -35,6 +39,36 @@ const Link1 = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(
 
 const NavHeader = () => {
   const classes = useStyles(useTheme());
+  const history = useHistory();
+  const location = useLocation();
+
+  const {
+    props: { isAuthenticated },
+    setAuthenticated
+  } = React.useContext(AppContext);
+
+  const SignInButton = () =>
+    !isAuthenticated ? (
+      <Button
+        href="#"
+        color="primary"
+        variant="outlined"
+        className={classes.link}
+        onClick={() => history.push("/login", { from: location })}
+      >
+        Sign In
+      </Button>
+    ) : (
+      <Button
+        href="#"
+        color="primary"
+        variant="outlined"
+        className={classes.link}
+        onClick={() => setAuthenticated(false)}
+      >
+        Sign Out
+      </Button>
+    );
 
   return (
     <AppBar
@@ -71,24 +105,8 @@ const NavHeader = () => {
           >
             Orders
           </Link>
-          <Link
-            variant="button"
-            color="textPrimary"
-            className={classes.link}
-            component={Link1}
-            to="/users"
-          >
-            Users
-          </Link>
         </nav>
-        <Button
-          href="#"
-          color="primary"
-          variant="outlined"
-          className={classes.link}
-        >
-          Login
-        </Button>
+        <SignInButton />
       </Toolbar>
     </AppBar>
   );
