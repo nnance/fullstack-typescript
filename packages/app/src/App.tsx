@@ -8,19 +8,6 @@ import { Button } from "@material-ui/core";
 import { AppContext } from "./components/AppContext";
 import AuthButton from "./components/AuthButton";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 export default function App() {
   const { setLightTheme } = React.useContext(AppContext);
 
@@ -38,7 +25,6 @@ export default function App() {
         <Button onClick={switchHandler(false)}>Dark</Button>
         <AuthButton />
         <ProTip />
-        <Copyright />
       </Box>
     </Container>
   );
