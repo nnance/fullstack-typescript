@@ -14,10 +14,10 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-import { AppContext } from "./components/AppContext";
+import { AppContext } from "../components/AppContext";
 import { RouteComponentProps } from "react-router-dom";
 
-import ErrorMsg from "./components/ErrorMsg";
+import ErrorMsg from "../components/ErrorMsg";
 
 const useStyles = makeStyles(theme => ({
   paper: {

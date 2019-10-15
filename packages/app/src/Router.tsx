@@ -12,9 +12,10 @@ import {
 import { withNavHeader } from "./components/NavHeader";
 import { withCopyright } from "./components/Copyright";
 
-import App from "./App";
-import SignIn from "./SignIn";
-import Orders from "./Orders";
+import App from "./routes/App";
+import SignIn from "./routes/SignIn";
+import Orders from "./routes/Orders";
+import NotFound from "./routes/NotFound";
 import { AppContext } from "./components/AppContext";
 
 function withNavCopyright<T>(Component: React.ComponentType<T>) {
@@ -31,7 +32,7 @@ export default function Router() {
         <Route exact path="/" component={withNavCopyright(App)} />
         <PrivateRoute path="/orders" component={withNavCopyright(Orders)} />
         <Route path="/login" component={withCopyright(SignIn)} />
-        {/* <Route component={Notfound} /> */}
+        <Route component={withNavCopyright(NotFound)} />
       </Switch>
     </BrowserRouter>
   );
