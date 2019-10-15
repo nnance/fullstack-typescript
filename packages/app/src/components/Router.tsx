@@ -9,14 +9,14 @@ import {
   Redirect
 } from "react-router-dom";
 
-import { withNavHeader } from "./components/NavHeader";
-import { withCopyright } from "./components/Copyright";
+import { withNavHeader } from "./NavHeader";
+import { withCopyright } from "./Copyright";
 
-import App from "./routes/App";
-import SignIn from "./routes/SignIn";
-import Orders from "./routes/Orders";
-import NotFound from "./routes/NotFound";
-import { AppContext } from "./components/AppContext";
+import App from "../routes/App";
+import SignIn from "../routes/SignIn";
+import Orders from "../routes/Orders";
+import NotFound from "../routes/NotFound";
+import { AppContext } from "./AppContext";
 
 function withNavCopyright<T>(Component: React.ComponentType<T>) {
   return flow(

@@ -5,7 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/styles";
 import theme, { darkTheme } from "./theme";
 import { AppContext, useAppContext } from "./components/AppContext";
-import Router from "./Router";
+import Router from "./components/Router";
 
 const Container = () => {
   const switcher = useAppContext();
