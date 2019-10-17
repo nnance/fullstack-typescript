@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 
 import AuthButton from "./AuthButton";
+import { AppContext } from "./AppContext";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -36,6 +37,7 @@ const Link1 = React.forwardRef<HTMLAnchorElement, RouterLinkProps>(
 
 const NavHeader = () => {
   const classes = useStyles(useTheme());
+  const context = React.useContext(AppContext);
 
   return (
     <AppBar
@@ -71,6 +73,18 @@ const NavHeader = () => {
             to="/orders"
           >
             Orders
+          </Link>
+          <Link
+            variant="button"
+            color="textPrimary"
+            className={classes.link}
+            component={Link1}
+            to={{
+              pathname: "/profile",
+              state: context.props.user
+            }}
+          >
+            Profile
           </Link>
         </nav>
         <AuthButton

@@ -15,6 +15,7 @@ import { withCopyright } from "./Copyright";
 import App from "../routes/App";
 import SignIn from "../routes/SignIn";
 import Orders from "../routes/Orders";
+import Profile from "../routes/Profile";
 import NotFound from "../routes/NotFound";
 import { AppContext } from "./AppContext";
 
@@ -31,6 +32,7 @@ export default function Router() {
       <Switch>
         <Route exact path="/" component={withNavCopyright(App)} />
         <PrivateRoute path="/orders" component={withNavCopyright(Orders)} />
+        <PrivateRoute path="/profile" component={withNavCopyright(Profile)} />
         <Route path="/login" component={withCopyright(SignIn)} />
         <Route component={withNavCopyright(NotFound)} />
       </Switch>
