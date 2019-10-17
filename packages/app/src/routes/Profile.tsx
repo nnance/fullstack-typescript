@@ -9,7 +9,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { IUser } from "api";
-import { RouteProps } from "react-router";
+import { RouteProps, useHistory } from "react-router";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp(props: RouteProps) {
   const classes = useStyles(useTheme());
+  const history = useHistory();
   const user = props.location && (props.location.state as IUser);
 
   return (
@@ -73,28 +74,42 @@ export default function SignUp(props: RouteProps) {
                 variant="outlined"
                 required
                 fullWidth
-                name="password"
                 label="Password"
                 type="password"
                 id="password"
+                name="password"
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="Marketing consent"
               />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Save
-          </Button>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Button
+                fullWidth
+                variant="contained"
+                className={classes.submit}
+                onClick={() => history.goBack()}
+              >
+                Cancel
+              </Button>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Save
+              </Button>
+            </Grid>
+          </Grid>
         </form>
       </div>
     </Container>

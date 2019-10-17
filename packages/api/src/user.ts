@@ -5,6 +5,11 @@ export const testUsers: IUser[] = [
     name: "Superman",
     email: "superman@gmail.com",
     password: "Bro"
+  },
+  {
+    name: "Test User",
+    email: "testuser@gmail.com",
+    password: "test"
   }
 ];
 

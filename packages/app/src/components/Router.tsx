@@ -18,6 +18,7 @@ import Orders from "../routes/Orders";
 import Profile from "../routes/Profile";
 import NotFound from "../routes/NotFound";
 import { AppContext } from "./AppContext";
+import Users from "../routes/Users";
 
 function withNavCopyright<T>(Component: React.ComponentType<T>) {
   return flow(
@@ -32,6 +33,7 @@ export default function Router() {
       <Switch>
         <Route exact path="/" component={withNavCopyright(App)} />
         <PrivateRoute path="/orders" component={withNavCopyright(Orders)} />
+        <PrivateRoute path="/users" component={withNavCopyright(Users)} />
         <PrivateRoute path="/profile" component={withNavCopyright(Profile)} />
         <Route path="/login" component={withCopyright(SignIn)} />
         <Route component={withNavCopyright(NotFound)} />

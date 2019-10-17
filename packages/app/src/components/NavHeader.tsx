@@ -79,6 +79,17 @@ const NavHeader = () => {
             color="textPrimary"
             className={classes.link}
             component={Link1}
+            to="/users"
+          >
+            Users
+          </Link>
+        </nav>
+        {context.props.isAuthenticated ? (
+          <Link
+            variant="button"
+            color="textPrimary"
+            className={classes.link}
+            component={Link1}
             to={{
               pathname: "/profile",
               state: context.props.user
@@ -86,12 +97,13 @@ const NavHeader = () => {
           >
             Profile
           </Link>
-        </nav>
-        <AuthButton
-          color="inherit"
-          variant="outlined"
-          className={classes.link}
-        />
+        ) : (
+          <AuthButton
+            color="inherit"
+            variant="outlined"
+            className={classes.link}
+          />
+        )}
       </Toolbar>
     </AppBar>
   );
