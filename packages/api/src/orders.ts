@@ -9,21 +9,22 @@ export interface IOrder {
   amount: number;
 }
 
+var id = 0;
+
 // Generate Order Data
 function createData(
-  id: number,
   date: string,
   name: string,
   shipTo: string,
   method: string,
   amt: number
 ): IOrder {
-  return { id, date, name, shipTo, paymentMethod: method, amount: amt };
+  const nextId = id++;
+  return { id: nextId, date, name, shipTo, paymentMethod: method, amount: amt };
 }
 
 export const orders = [
   createData(
-    0,
     "16 Mar, 2019",
     "Elvis Presley",
     "Tupelo, MS",
@@ -31,7 +32,6 @@ export const orders = [
     312.44
   ),
   createData(
-    1,
     "16 Mar, 2019",
     "Paul McCartney",
     "London, UK",
@@ -39,7 +39,6 @@ export const orders = [
     866.99
   ),
   createData(
-    2,
     "16 Mar, 2019",
     "Tom Scholz",
     "Boston, MA",
@@ -47,7 +46,6 @@ export const orders = [
     100.81
   ),
   createData(
-    3,
     "16 Mar, 2019",
     "Michael Jackson",
     "Gary, IN",
@@ -55,7 +53,6 @@ export const orders = [
     654.39
   ),
   createData(
-    4,
     "15 Mar, 2019",
     "Bruce Springsteen",
     "Long Branch, NJ",

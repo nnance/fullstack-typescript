@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import { IUser } from "api";
+import { IUser, saveUser } from "api";
 import { RouteProps, useHistory } from "react-router";
 
 const useStyles = makeStyles(theme => ({
@@ -34,7 +34,11 @@ const useStyles = makeStyles(theme => ({
 export default function SignUp(props: RouteProps) {
   const classes = useStyles(useTheme());
   const history = useHistory();
-  const user = props.location && (props.location.state as IUser);
+  const user = Object.assign(
+    {},
+    props.location && (props.location.state as IUser)
+  );
+  const [state, setState] = React.useState(user);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -47,7 +51,7 @@ export default function SignUp(props: RouteProps) {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                value={user && user.name}
+                value={state.name}
                 name="name"
                 variant="outlined"
                 required
@@ -55,22 +59,30 @@ export default function SignUp(props: RouteProps) {
                 id="name"
                 label="Name"
                 autoFocus
+                onChange={val => {
+                  const name = val.currentTarget.value;
+                  setState(prev => ({ ...prev, name }));
+                }}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                value={user && user.email}
+                value={state.email}
                 variant="outlined"
                 required
                 fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
+                onChange={val => {
+                  const email = val.currentTarget.value;
+                  setState(prev => ({ ...prev, email }));
+                }}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                value={user && user.password}
+                value={state.password}
                 variant="outlined"
                 required
                 fullWidth
@@ -78,6 +90,10 @@ export default function SignUp(props: RouteProps) {
                 type="password"
                 id="password"
                 name="password"
+                onChange={val => {
+                  const password = val.currentTarget.value;
+                  setState(prev => ({ ...prev, password }));
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -100,11 +116,11 @@ export default function SignUp(props: RouteProps) {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Button
-                type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                onClick={() => saveUser(state).then(() => history.goBack())}
               >
                 Save
               </Button>

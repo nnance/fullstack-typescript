@@ -13,3 +13,14 @@ content-type: application/json
     "email": "superman@gmail.com",
     "password": "Bro"
 }
+
+###
+
+PUT http://localhost:3010/users/0 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Supermans",
+    "email": "superman@gmail.com",
+    "password": "Bro"
+}

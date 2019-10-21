@@ -18,6 +18,7 @@ import { AppContext } from "../components/AppContext";
 import { RouteComponentProps } from "react-router-dom";
 
 import ErrorMsg from "../components/ErrorMsg";
+import { testUsers } from "api";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -44,7 +45,7 @@ export default function SignIn(props: RouteComponentProps) {
 
   const appContext = React.useContext(AppContext);
 
-  const [state, setState] = React.useState({ email: "", password: "" });
+  const [state, setState] = React.useState(testUsers[0]);
 
   React.useEffect(() => {
     const { from } = props.location.state || { from: { pathname: "/" } };
@@ -75,10 +76,9 @@ export default function SignIn(props: RouteComponentProps) {
             margin="normal"
             required
             fullWidth
-            id="email"
             label="Email Address"
-            name="email"
             autoComplete="email"
+            value={state.email}
             onChange={val => {
               const email = val.currentTarget.value;
               setState(prev => ({ ...prev, email }));
@@ -90,11 +90,9 @@ export default function SignIn(props: RouteComponentProps) {
             margin="normal"
             required
             fullWidth
-            name="password"
             label="Password"
             type="password"
-            id="password"
-            autoComplete="current-password"
+            value={state.password}
             onChange={val => {
               const password = val.currentTarget.value;
               setState(prev => ({ ...prev, password }));
