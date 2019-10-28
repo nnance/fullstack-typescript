@@ -9,6 +9,8 @@ export interface IOrder {
   amount: number;
 }
 
+export const orderURL = "/orders";
+
 // Generate Order Data
 function createData(
   id: number,
@@ -64,4 +66,4 @@ export const orders = [
   )
 ];
 
-export const getOrders = () => callApi<IOrder[]>("/orders");
+export const getOrders = () => callApi<IOrder[]>(orderURL);

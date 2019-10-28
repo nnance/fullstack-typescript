@@ -12,7 +12,8 @@ import {
   Container
 } from "@material-ui/core";
 
-import { IOrder, getOrders } from "api";
+import { IOrder, orderURL } from "api";
+import useFetch from "../hooks/useFetch";
 
 const useStyles = makeStyles(theme => ({
   seeMore: {
@@ -23,10 +24,7 @@ const useStyles = makeStyles(theme => ({
 export default function Orders() {
   const classes = useStyles(useTheme());
 
-  const [rows, setRows] = React.useState<IOrder[]>([]);
-  React.useEffect(() => {
-    getOrders().then(setRows);
-  }, []);
+  const { data } = useFetch<IOrder[]>(orderURL);
 
   return (
     <Container maxWidth="md">
@@ -44,15 +42,16 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row: IOrder) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
-            </TableRow>
-          ))}
+          {data &&
+            data.map((row: IOrder) => (
+              <TableRow key={row.id}>
+                <TableCell>{row.date}</TableCell>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.shipTo}</TableCell>
+                <TableCell>{row.paymentMethod}</TableCell>
+                <TableCell align="right">{row.amount}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
       <div className={classes.seeMore}>
